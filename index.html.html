@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Robux Help Center</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #e8f1ff;
+        color: #0a0a0a;
+        transition: 0.3s;
+        overflow-x: hidden;
+    }
+
+    body.dark {
+        background-color: #0a0a0a;
+        color: #ffffff;
+    }
+
+    /* Sidebar */
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 230px;
+        height: 100%;
+        background-color: #1a73e8;
+        padding-top: 40px;
+        transform: translateX(-230px);
+        transition: 0.3s;
+        z-index: 5;
+    }
+
+    #sidebar.open {
+        transform: translateX(0);
+    }
+
+    #sidebar a {
+        display: block;
+        padding: 15px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    #sidebar a:hover {
+        background-color: #0f4fb8;
+    }
+
+    #menuBtn, #toggleMode {
+        position: fixed;
+        top: 20px;
+        background-color: #1a73e8;
+        color: white;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        z-index: 6;
+    }
+
+    #menuBtn { left: 20px; }
+    #toggleMode { right: 20px; }
+
+    header {
+        background-color: #1a73e8;
+        color: white;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+        background-color: white;
+        border: 8px solid #000;
+        transform: rotate(15deg);
+        margin: 0 auto 10px auto;
+    }
+
+    nav {
+        background-color: #000;
+        padding: 12px;
+        text-align: center;
+    }
+
+    nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        color: #1a73e8;
+    }
+
+    .section {
+        max-width: 900px;
+        margin: 40px auto;
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 6px solid #1a73e8;
+        position: relative;
+        z-index: 2;
+    }
+
+    body.dark .section {
+        background-color: rgba(20, 20, 20, 0.85);
+    }
+
+    h2 {
+        color: #1a73e8;
+    }
+
+    /* XP Bar */
+    .xp-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .xp-container {
+        width: 70%;
+        background-color: #dce6ff;
+        border: 3px solid #1a73e8;
+        border-radius: 12px;
+        height: 30px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    body.dark .xp-container {
+        background-color: #1a1a1a;
+        border-color: #4a9aff;
+    }
+
+    .xp-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #1a73e8, #4aa3ff);
+        border-radius: 10px;
+        transition: width 0.4s ease-out;
+    }
+
+    .xp-text {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 4px;
+        font-weight: bold;
+        color: #000;
+    }
+
+    body.dark .xp-text {
+        color: #fff;
+    }
+
+    /* XP Button */
+    #xpBtn {
+        padding: 10px 20px;
+        background-color: #1a73e8;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    #xpBtn:hover {
+        background-color: #0f4fb8;
+    }
+
+    /* Badge Popup */
+    #badge {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background-color: gold;
+        padding: 30px 50px;
+        border-radius: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        color: black;
+        border: 5px solid white;
+        box-shadow: 0 0 20px gold;
+        transition: 0.4s;
+        z-index: 20;
+    }
+
+    #badge.show {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Screen Flash */
+    #flash {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 15;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+    }
+
+    /* Particles */
+    #particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: #1a73e8;
+        border-radius: 50%;
+        opacity: 0.7;
+        animation: floatUp 8s linear infinite;
+    }
+
+    @keyframes floatUp {
+        from { transform: translateY(100vh); }
+        to { transform: translateY(-10vh); }
+    }
+</style>
+</head>
+<body>
+
+<div id="flash"></div>
+<div id="badge">🏆 XP BAR COMPLETED!</div>
+
+<div id="sidebar">
+    <a href="#free">Free Robux Methods</a>
+    <a href="#tips">Safety Tips</a>
+    <a href="#about">About</a>
+    <a href="clothing-tutorial.html">How to Make a Clothing Group</a>
+</div>
+
+<button id="menuBtn">☰ Menu</button>
+<button id="toggleMode">Toggle Dark/Light</button>
+
+<div id="particles"></div>
+
+<header>
+    <div class="logo"></div>
+    <h1>Robux Help Center</h1>
+    <p>Safe & Real Ways to Earn Robux</p>
+</header>
+
+<!-- XP BAR + BUTTON -->
+<div class="xp-wrapper">
+    <div class="xp-container">
+        <div class="xp-fill" id="xpFill"></div>
+        <div class="xp-text" id="xpText">XP: 0 / 100</div>
+    </div>
+    <button id="xpBtn">Gain XP</button>
+</div>
+
+<nav>
+    <a href="#free">Free Methods</a>
+    <a href="#tips">Tips</a>
+    <a href="#about">About</a>
+    <a href="clothing-tutorial.html">Clothing Group Tutorial</a>
+</nav>
+
+<!-- FULL TEXT RESTORED -->
+<div class="section" id="free">
+    <h2>Ways to Get Robux Without Buying It</h2>
+
+    <h3>1. Create and Sell Clothing</h3>
+    <p>
+        You can design shirts, pants, and T‑shirts and upload them to the Roblox marketplace.
+        When players buy your clothing, you earn Robux. This is one of the most popular ways to earn
+        Robux without spending money.
+    </p>
+    <p><a href="clothing-tutorial.html"><strong>Click here for a full tutorial on how to make a clothing group.</strong></a></p>
+
+    <h3>2. Make a Roblox Game</h3>
+    <p>
+        Creating a game is the most powerful way to earn Robux. You can earn through:
+    </p>
+    <ul>
+        <li><strong>Game Passes</strong> – one‑time purchases players buy for perks.</li>
+        <li><strong>Developer Products</strong> – items players can buy repeatedly.</li>
+        <li><strong>Premium Payouts</strong> – Roblox pays you when Premium users play your game.</li>
+    </ul>
+    <p>
+        Even simple games can earn Robux if they’re fun or unique.
+    </p>
+
+    <h3>3. Roblox Affiliate Program</h3>
+    <p>
+        When you share a link to a Roblox item, game, or experience and someone buys it or joins Roblox through your link,
+        you earn a percentage of the Robux spent.
+    </p>
+
+    <h3>4. Trade Limited Items</h3>
+    <p>
+        If you have Roblox Premium, you can trade limited items with other players.
+        By trading smartly and watching item values, you can profit and sell items for Robux.
+    </p>
+
+    <h3>5. Participate in Official Roblox Events</h3>
+    <p>
+        Roblox sometimes hosts events that reward free items or even Robux.
+        These events are always safe and official — never trust unofficial “events” claiming to give Robux.
+    </p>
+
+    <h3>6. Group Payouts</h3>
+    <p>
+        Many Roblox groups hire players to help with building, scripting, designing clothing, or managing communities.
+        Groups can pay members Robux directly through the payout system.
+    </p>
+
+    <h3>7. Sell Assets on the Creator Marketplace</h3>
+    <p>
+        Developers can sell models, meshes, plugins, animations, and scripts.
+        If your creations are useful, other developers will buy them — and you earn Robux from each sale.
+    </p>
+</div>
+
+<div class="section" id="tips">
+    <h2>Safety Tips</h2>
+    <ul>
+        <li>Never trust “free Robux generators”.</li>
+        <li>Only use official Roblox earning methods.</li>
+        <li>Enable 2‑step verification.</li>
+        <li>Never share your password.</li>
+    </ul>
+</div>
+
+<div class="section" id="about">
+    <h2>About This Website</h2>
+    <p>
+        This site teaches Roblox players safe and real ways to earn Robux without spending money.
+        Everything listed here follows Roblox’s official rules and keeps your account safe.
+    </p>
+</div>
+
+<script>
+    /* Sidebar */
+    document.getElementById("menuBtn").onclick = () => {
+        document.getElementById("sidebar").classList.toggle("open");
+    };
+
+    /* Dark Mode */
+    document.getElementById("toggleMode").onclick = () => {
+        document.body.classList.toggle("dark");
+    };
+
+    /* Particles */
+    const particleContainer = document.getElementById("particles");
+    function createParticle() {
+        const p = document.createElement("div");
+        p.classList.add("particle");
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.animationDuration = 6 + Math.random() * 5 + "s";
+        particleContainer.appendChild(p);
+        setTimeout(() => p.remove(), 10000);
+    }
+    setInterval(createParticle, 200);
+
+    /* XP SYSTEM */
+    let xp = 0;
+    const maxXP = 100;
+
+    const xpFill = document.getElementById("xpFill");
+    const xpText = document.getElementById("xpText");
+    const xpBtn = document.getElementById("xpBtn");
+    const flash = document.getElementById("flash");
+    const badge = document.getElementById("badge");
+
+    xpBtn.onclick = () => {
+        xp += 10;
+        if (xp > maxXP) xp = maxXP;
+
+        xpFill.style.width = (xp / maxXP) * 100 + "%";
+        xpText.textContent = `XP: ${xp} / ${maxXP}`;
+
+        if (xp === maxXP) {
+            triggerLevelUp();
+        }
+    };
+
+    function triggerLevelUp() {
+        const colors = [
+            "rgba(0,0,255,0.7)",
+            "rgba(0,0,0,0.7)",
+            "rgba(255,255,255,0.7)",
+            "linear-gradient(45deg, blue, black, white)"
+        ];
+
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+        flash.style.background = randomColor;
+        flash.style.opacity = 1;
+
+        setTimeout(() => flash.style.opacity = 0, 500);
+
+        badge.classList.add("show");
+        setTimeout(() => badge.classList.remove("show"), 2000);
+
+        xp = 0;
+        setTimeout(() => {
+            xpFill.style.width = "0%";
+            xpText.textContent = "XP: 0 / 100";
+        }, 600);
+    }
+</script>
+
+</body>
+</html>

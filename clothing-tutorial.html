@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How to Make a Clothing Group</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #e8f1ff;
+        color: #0a0a0a;
+        transition: 0.3s;
+        overflow-x: hidden;
+    }
+
+    body.dark {
+        background-color: #0a0a0a;
+        color: #ffffff;
+    }
+
+    /* Sidebar */
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 230px;
+        height: 100%;
+        background-color: #1a73e8;
+        padding-top: 40px;
+        transform: translateX(-230px);
+        transition: 0.3s;
+        z-index: 5;
+    }
+
+    #sidebar.open {
+        transform: translateX(0);
+    }
+
+    #sidebar a {
+        display: block;
+        padding: 15px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    #sidebar a:hover {
+        background-color: #0f4fb8;
+    }
+
+    #menuBtn, #toggleMode {
+        position: fixed;
+        top: 20px;
+        background-color: #1a73e8;
+        color: white;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        z-index: 6;
+    }
+
+    #menuBtn { left: 20px; }
+    #toggleMode { right: 20px; }
+
+    header {
+        background-color: #1a73e8;
+        color: white;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+        background-color: white;
+        border: 8px solid #000;
+        transform: rotate(15deg);
+        margin: 0 auto 10px auto;
+    }
+
+    .section {
+        max-width: 900px;
+        margin: 40px auto;
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 6px solid #1a73e8;
+        position: relative;
+        z-index: 2;
+    }
+
+    body.dark .section {
+        background-color: rgba(20, 20, 20, 0.85);
+    }
+
+    h2 {
+        color: #1a73e8;
+    }
+
+    /* Particles */
+    #particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: #1a73e8;
+        border-radius: 50%;
+        opacity: 0.7;
+        animation: floatUp 8s linear infinite;
+    }
+
+    @keyframes floatUp {
+        from { transform: translateY(100vh); }
+        to { transform: translateY(-10vh); }
+    }
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<div id="sidebar">
+    <a href="index.html">🏠 Back to Home</a>
+    <a href="#steps">Tutorial Steps</a>
+</div>
+
+<button id="menuBtn">☰ Menu</button>
+<button id="toggleMode">Toggle Dark/Light</button>
+
+<header>
+    <div class="logo"></div>
+    <h1>How to Make a Clothing Group</h1>
+    <p>A full step‑by‑step guide for Roblox beginners</p>
+</header>
+
+<div class="section" id="steps">
+    <h2>Step‑by‑Step Guide</h2>
+
+    <h3>1. Go to the Roblox Groups Page</h3>
+    <p>
+        Visit <strong>roblox.com/groups</strong>.  
+        This is where you can browse, join, and create groups.
+    </p>
+
+    <h3>2. Click “Create Group”</h3>
+    <p>
+        You’ll find this button on the left side of the page.  
+        Roblox will take you to the group creation form.
+    </p>
+
+    <h3>3. Choose a Group Name</h3>
+    <p>
+        Pick something unique and easy to remember.  
+        Clothing groups often use names like:
+    </p>
+    <ul>
+        <li>“Elite Designs”</li>
+        <li>“Galaxy Clothing Co.”</li>
+        <li>“Royal Fashion Group”</li>
+    </ul>
+
+    <h3>4. Add a Description</h3>
+    <p>
+        Tell people what your group is about.  
+        Example:
+        <em>“We create high‑quality Roblox clothing and accept designer applications.”</em>
+    </p>
+
+    <h3>5. Upload a Group Icon</h3>
+    <p>
+        This is the logo people will see.  
+        Make sure it looks clean and represents your brand.
+    </p>
+
+    <h3>6. Choose Group Settings</h3>
+    <p>
+        Decide if your group is:
+    </p>
+    <ul>
+        <li><strong>Public</strong> – anyone can join</li>
+        <li><strong>Private</strong> – players must request to join</li>
+    </ul>
+
+    <h3>7. Pay the 100 Robux Fee</h3>
+    <p>
+        Roblox requires a one‑time fee of <strong>100 Robux</strong> to create a group.
+    </p>
+
+    <h3>8. Create Clothing for Your Group</h3>
+    <p>
+        Once your group is created, go to the “Store” tab and upload shirts or pants.
+        You can then sell them and earn Robux.
+    </p>
+
+    <h3>9. Set Up Group Roles</h3>
+    <p>
+        Add roles like:
+    </p>
+    <ul>
+        <li>Owner</li>
+        <li>Co‑Owner</li>
+        <li>Designer</li>
+        <li>Advertiser</li>
+        <li>Member</li>
+    </ul>
+
+    <h3>10. Promote Your Group</h3>
+    <p>
+        Share your group link on:
+    </p>
+    <ul>
+        <li>Social media</li>
+        <li>Roblox games</li>
+        <li>Clothing descriptions</li>
+        <li>Group wall</li>
+    </ul>
+
+    <p><strong>Your clothing group is now ready!</strong></p>
+</div>
+
+<script>
+    /* Sidebar */
+    document.getElementById("menuBtn").onclick = () => {
+        document.getElementById("sidebar").classList.toggle("open");
+    };
+
+    /* Dark Mode */
+    document.getElementById("toggleMode").onclick = () => {
+        document.body.classList.toggle("dark");
+    };
+
+    /* Particles */
+    const particleContainer = document.getElementById("particles");
+    function createParticle() {
+        const p = document.createElement("div");
+        p.classList.add("particle");
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.animationDuration = 6 + Math.random() * 5 + "s";
+        particleContainer.appendChild(p);
+        setTimeout(() => p.remove(), 10000);
+    }
+    setInterval(createParticle, 200);
+</script>
+
+</body>
+</html>
